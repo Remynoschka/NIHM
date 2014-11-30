@@ -20,19 +20,18 @@ void setup() {
 
 void draw() { 
   background(255);
-  color black = color(0); 
-  for (int i = 0; i < totalCount; i++) 
-    set((int) mapX(x[i]), (int) mapY(y[i]), black);
+  for (int i = 0; i < totalCount-2; i++) {     
+    cities[i].drawCity();
+  }
 }
 
 void readData() { 
   String[] lines = loadStrings("./villes.tsv");
   parseInfo(lines[0]); // read the header line
-  x = new float[totalCount]; 
-  y = new float[totalCount]; 
+  cities = new City[totalCount];
   for (int i = 2; i < totalCount; ++i) { 
     String[] columns = split(lines[i], TAB); 
-    cities[i] = new City(
+    cities[i-2] = new City(int(columns[0]), columns[4], float(columns[1]), float(columns[2]), float(columns[5]), float(columns[6]), float(columns[7]));
   }
 }
 
@@ -53,11 +52,5 @@ void parseInfo(String line) {
   maxAltitude = float(infoPieces[10]);
 }
 
-float mapX(float x) { 
-  return map(x, minX, maxX, 0, 800);
-}
 
-float mapY(float y) { 
-  return map(y, minY, maxY, 800,0);
-}
 
