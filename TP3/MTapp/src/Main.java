@@ -99,6 +99,7 @@ public class Main {
 		final MTPicture p0 = new MTPicture("SunFlower.jpg",new MyOBB());
 		p0.setOrigin(50, 50);
 		p0.setAngleinDegrees(-10);
+		p0.setScale(0.5);
 		mtSurface.add(p0);
 
 		/*final MTPicture p1 = new MTPicture("Yellow_Garden_Flowers.jpg",new MyOBB());
