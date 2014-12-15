@@ -26,11 +26,12 @@ public class Canvas2D extends Canvas implements MouseMotionListener,
 
 	private DTW dtw;
 	private Matrix m;
+	private int w = 200;
 
 	Canvas2D() {
 		RStroke = new Vector<Point>();
 		TStroke = new Vector<Point>();
-		dtw = new DTW(TStroke, RStroke, 200);
+		dtw = new DTW(TStroke, RStroke, w);
 		addMouseListener(this);
 		addMouseMotionListener(this);
 
@@ -77,13 +78,41 @@ public class Canvas2D extends Canvas implements MouseMotionListener,
 		// afficher mise en correspondance
 		if (!TStroke.isEmpty() && !RStroke.isEmpty() && m != null) {
 			g.setColor(Color.MAGENTA);
-			for (int i = 1; i < TStroke.size() && i < RStroke.size(); i++) {
-				for (int j = 1; j < RStroke.size() && j < TStroke.size(); j++) {
-					 g.drawLine(TStroke.get(m.couple[i][j].x).x,TStroke.get(m.couple[i][j].x).y,RStroke.get(m.couple[i][j].x).x,RStroke.get(m.couple[i][j].x).y);
-					 System.out.println("i = "+i);
-					 System.out.println("j = "+j);
-				}
-			}
+			// for (int i = 1; i < TStroke.size() && i < RStroke.size(); i++) {
+			// for (int j = 1; j < RStroke.size() && j < TStroke.size(); j++) {
+			// System.out.println("i="+i+"/"+"j="+j);
+			// System.out.println(m.couple[i][j].x+"/"+m.couple[i][j].y);
+			// g.drawLine(TStroke.get(m.couple[i][j].x).x,
+			// TStroke.get(m.couple[i][j].x).y,
+			// RStroke.get(m.couple[i][j].y).x,
+			// RStroke.get(m.couple[i][j].y).y);
+			// }
+			// }
+
+			// int oldX = m.nRows - 1;
+			// int oldY = m.nCols-1;
+			// int nextX = m.nRows - 1;
+			// int nextY = m.nCols-1;
+			//
+			// while (nextX != 0 && nextY != 0) {
+			// System.out.println(m.couple.length);
+			// System.out.println(m.couple[0].length);
+			// nextX = m.couple[oldX][oldY].x;
+			// nextY = m.couple[oldX][oldY].y;
+			// g.drawLine(TStroke.get(oldX).x, TStroke.get(oldX).y,
+			// RStroke.get(oldX).x, RStroke.get(oldX).y);
+			// oldX = nextX;
+			// oldY = nextY;
+			// }
+
+			// APPAREILLAGE QUI MARCHE BITCH !!!!!!!!!!
+			 for (int i = 0; i < dtw.getAppareillage().size(); i += 2) {
+			 g.drawLine(dtw.getAppareillage().get(i).x, dtw
+			 .getAppareillage().get(i).y,
+			 dtw.getAppareillage().get(i + 1).x, dtw
+			 .getAppareillage().get(i + 1).y);
+			 }
+		
 		}
 
 	}
