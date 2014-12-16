@@ -7,6 +7,8 @@ int totalCount; // total number of places
 float minPopulation, maxPopulation; 
 float minSurface, maxSurface; 
 float minAltitude, maxAltitude;
+int minPopulationToDisplay = 10000;
+City selectedCity;
 //declare the variables corresponding to the column ids for x and y 
 int X = 1; 
 int Y = 2;
@@ -20,8 +22,13 @@ void setup() {
 
 void draw() { 
   background(255);
-  for (int i = 0; i < totalCount-2; i++) {     
-    cities[i].drawCity();
+  String s = "Afficher les populations supérieures à : " + minPopulationToDisplay;
+  fill(0);
+  text(s, 10, 10, 500, 80); 
+  for (int i = 0; i < totalCount-2; i++) {    
+    if (cities[i].population > minPopulationToDisplay) { 
+      cities[i].drawCity();
+    }
   }
 }
 
@@ -52,5 +59,46 @@ void parseInfo(String line) {
   maxAltitude = float(infoPieces[10]);
 }
 
+void keyPressed() {
+  if (key == CODED) {
+    if (keyCode == UP) {
+      if (minPopulationToDisplay == 0){
+        minPopulationToDisplay = 1;
+      } else {
+        minPopulationToDisplay*=10;
+      }
+    } else if (keyCode == DOWN) {
+      if ( minPopulationToDisplay > 100000) {
+        minPopulationToDisplay/=10;
+      } else
+        minPopulationToDisplay/=10;
+    }
+  }
+  redraw();
+}
 
+void mouseMoved() {
+  //println("X: " + mouseX + " Y: " + mouseY );
+    if (this.selectedCity!=null) {
+      selectedCity.selected = false;
+      selectedCity.mouseOver = false;
+    }
+    selectedCity = pick(mouseX, mouseY);
+    if (selectedCity!=null) {
+      selectedCity.selected = true;
+      selectedCity.mouseOver = true;
+    }
+  redraw();
+}
+
+City pick(int px, int py) {
+  for (int i = 2; i < totalCount-2; i++) {
+    if (cities[i].population > minPopulationToDisplay) {
+      if (cities[i].contains(px, py)){
+        return cities[i];
+      }
+    }
+  }  
+  return null;
+}
 
