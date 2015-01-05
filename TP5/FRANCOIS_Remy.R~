@@ -1,7 +1,11 @@
+library("gplots")
+
 v = c(12, .4, 5, 2, 50, 8, 3, 1, 4, .25) # data
 
-
+#q1
 percentile = quantile(v,0.90);
+
+#q2
 boxplot(v);
 barplot(v);
 
@@ -13,8 +17,33 @@ techniques=unique(data$Technique)
 
 
 
-
-tempsMoyenParTechnique = function(vTechnique){
-  TempsMoyen = mean(vTechnique[,"Time"])
-  return(object)
+#q3
+tempsMoyenTechnique = function(data, technique){
+  vector = subset(data, Technique==technique)
+  TempsMoyen = mean(vector[,"Time"])
+  return(TempsMoyen)
 }
+
+#q4
+TempsMoyensChaqueTech = sapply(techniques, tempsMoyenTechnique, data=data);
+
+#q5
+barplot(TempsMoyensChaqueTech, names=techniques);
+
+#q6
+tempsMoyenTechniqueSansErreur = function(data, technique){
+  vector = subset(data, Technique == technique & Err == 0);
+  TempsMoyen = mean(vector[,"Time"]);
+  return(TempsMoyen);
+}
+
+TempsMoyensChaqueTechSE = sapply(techniques, tempsMoyenTechniqueSansErreur, data=data);
+
+barplot(TempsMoyensChaqueTech, names=techniques);
+
+#q7
+calculIntervalleConf = function(sd, n){
+  ci = 1.96 * (sd / sqrt(n))
+  return(ci);
+}
+
