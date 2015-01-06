@@ -41,9 +41,4 @@ TempsMoyensChaqueTechSE = sapply(techniques, tempsMoyenTechniqueSansErreur, data
 
 barplot(TempsMoyensChaqueTech, names=techniques);
 
-#q7
-calculIntervalleConf = function(sd, n){
-  ci = 1.96 * (sd / sqrt(n))
-  return(ci);
-}
 

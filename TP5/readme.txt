@@ -23,4 +23,7 @@ Temps Moyen Control  : 2.188078
 Temps Moyen SemPoint : 3.045703
 
 Q7
-
+Intervalle de confiance a 95% de
+SurfPad  : 0.2267647
+Control  : 0.2589173
+SemPoint : 0.411586

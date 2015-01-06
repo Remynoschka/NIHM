@@ -47,5 +47,16 @@ calculIntervalleConf = function(sd, n){
   return(ci);
 }
 
+calculICTechnique = function (data, technique){
+    temps = subset(data, Technique == technique)$Time;
+    return(calculIntervalleConf(sd(temps), sqrt(length(temps))));
+    
+}
 
+#q8
 
+intervallesConf = sapply(techniques, calculICTechnique, data=data);
+barplot2(TempsMoyensChaqueTechSE, names.arg=techniques, 
+        plot.ci=TRUE, 
+        ci.l=TempsMoyensChaqueTechSE-intervallesConf, 
+        ci.u=TempsMoyensChaqueTechSE+intervallesConf);
