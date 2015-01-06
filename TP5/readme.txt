@@ -27,3 +27,10 @@ Intervalle de confiance a 95% de
 SurfPad  : 0.2267647
 Control  : 0.2589173
 SemPoint : 0.411586
+
+Q8
+Voir graphique
+
+Q9
+
+Q10
