@@ -1,3 +1,4 @@
+
 library("gplots")
 
 v = c(12, .4, 5, 2, 50, 8, 3, 1, 4, .25) # data
@@ -49,8 +50,7 @@ calculIntervalleConf = function(sd, n){
 
 calculICTechnique = function (data, technique){
     temps = subset(data, Technique == technique)$Time;
-    return(calculIntervalleConf(sd(temps), sqrt(length(temps))));
-    
+    return(calculIntervalleConf(sd(temps), length(temps)));    
 }
 
 #q8
