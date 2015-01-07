@@ -1,2 +1,13 @@
+FRANCOIS Rémy
+
 q3
-le probleme est que les angles par rapport a la ligne d'horizon sont de meme signe
+Le problème est que les angles par rapport a la ligne d'horizon sont de meme signe s'il est en dessous, ou au dessus de la ligne.
+Cela provoque le fait qu'un geste peut etre reconnu comme identique a celui symetrique selon l'axe horizontal.
+
+q4
+computeKmeansLearner : sert a lire et a créer la liste des templates à partir des modèles, ce qui servira à comparer les formes entrées aux templates.
+
+trainHMM : permet de fournir les données d'apprentissage aux algorithme de reconnaissance de l'HMM
+
+q7
+J'ai essayé de mettre un seuil, mais cela provoquait le fait qu'aucun geste n'était reconnu :(

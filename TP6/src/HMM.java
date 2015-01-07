@@ -43,7 +43,7 @@ public class HMM {
 		classMap = new HashMap<String, GestureClass>();
 		templateManager = new TemplateManager("gestures.xml");
 		gesturesProbabilities = new Vector<GestureProbability>();
-		// Training();
+		Training();
 	}
 
 	/**
@@ -127,10 +127,10 @@ public class HMM {
 		for (int c = 0; c < gestureClasses.size(); c++) {
 			double scoreClass = classMap.get(gestureClasses.get(c))
 					.computeScore(featuresRawPoints);
-			// System.out.println(gestureClasses.get(c) + " " + scoreClass);
+			 System.out.println(gestureClasses.get(c) + " " + scoreClass);
 			gesturesProbabilities.add(new GestureProbability(gestureClasses
 					.get(c), scoreClass));
-			if (scoreClass > score) {
+			if (scoreClass > score /*&& scoreClass > 0.3*/) {
 				score = scoreClass;
 				nameTemplateFound = gestureClasses.get(c);
 			}
@@ -226,7 +226,7 @@ public class HMM {
 					cur.getX() - prev.getX()));
 			angles.add(Math.toDegrees(angle) / 10);
 		}
-		System.out.println(angles);
+		// System.out.println(angles);
 		return angles;
 	}
 
